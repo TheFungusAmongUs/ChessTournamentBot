@@ -1,4 +1,5 @@
 import asyncio
+import discord
 import toml
 from discord.ext import commands
 
