@@ -1,26 +1,35 @@
+import json
 import toml
 from pathlib import Path
+from utils.file_handling import *
 
 
-def load_files(to_load: str):
-    # Will be used to load both the data and the config files.
-    if Path(f'{to_load}/{to_load}.toml').exists():
-        with open(f"{to_load}/{to_load}.toml", "r+") as file, open(f"{to_load}/base_{to_load}.toml", "r") as base_file:
-            # Adds any extra fields from the base config file when updating the bot
-            base_toml = toml.load(base_file)
-            current_toml = toml.load(file)
-            toml.dump({**base_toml, **current_toml}, file)
+def setup_json() -> None:
+    if Path('data/data.json').exists():
+        with open("data/data.json", "r+") as file, open("data/base_data.json", "r") as base_file:
+            # Adds any extra fields from the base data file when updating the bot
+            base_json = read_json(base_file)
+            current_json = read_json(file)
+            write_json({**base_json, **current_json}, file)
 
     else:
-        with open(f"{to_load}/{to_load}.toml", "w") as file, open(f"{to_load}/base_{to_load}.toml", "r") as base_file:
-            toml.dump(toml.load(base_file), file)
+        with open("data/data.json", "w") as file, open("data/base_data.json", "r") as base_file:
+            write_json(json.load(base_file), file)
 
 
-def full_setup():
+def setup_toml() -> None:
+    if Path('config/config.toml').exists():
+        with open("config/config.toml", "r+") as file, open("config/base_config.toml", "r") as base_file:
+            # Adds any extra fields from the base config file when updating the bot
+            base_toml = read_toml(base_file)
+            current_toml = read_toml(file)
+            write_toml({**base_toml, **current_toml}, file)
 
-    load_files("config")
-    load_files("data")
+    else:
+        with open("config/config.toml", "w") as file, open("config/base_config.toml", "r") as base_file:
+            write_toml(toml.load(base_file), file)
 
 
 if __name__ == "__main__":
-    full_setup()
+    setup_toml()
+    setup_json()
