@@ -1,4 +1,3 @@
-from setuptools import setup
 import toml
 from pathlib import Path
 
@@ -18,24 +17,6 @@ def load_files(to_load: str):
 
 
 def full_setup():
-
-    setup(
-        name='gtahs_bot',
-        version='0.1',
-        description='Discord Bot for the GTA High School Chess Tournament',
-        url='https://github.com/TheFungusAmongUs/gtahs_bot',
-        author='TheFungusAmongUs',
-        author_email='nathan.pfeffer@protonmail.com',
-        license='MIT',
-        packages=['gtahs_bot'],
-        include_package_data=True,
-        install_requires=[
-            'git+https://github.com/Rapptz/discord.py',
-            'toml',
-            'openpyxl'
-        ],
-        zip_safe=False
-    )
 
     load_files("config")
     load_files("data")
