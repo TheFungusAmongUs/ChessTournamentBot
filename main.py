@@ -7,7 +7,7 @@ from discord.ext import commands
 class ChessTournamentBot(commands.Bot):
 
     def __init__(self):
-        super().__init__(command_prefix='', help_command=None)
+        super().__init__(command_prefix='', help_command=None, intents=discord.Intents.all())
 
 
 async def main():
