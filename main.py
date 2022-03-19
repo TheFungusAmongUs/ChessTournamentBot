@@ -1,5 +1,6 @@
 import asyncio
 import discord
+import openpyxl
 import toml
 from discord.ext import commands
 
