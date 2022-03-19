@@ -2,8 +2,7 @@ import json
 import toml
 from typing import Any, MutableMapping, TextIO, TYPE_CHECKING
 
-if TYPE_CHECKING:
-    toml_dict = MutableMapping[str, Any]
+toml_dict = MutableMapping[str, Any]
 
 
 def read_json(fp: TextIO) -> dict:
