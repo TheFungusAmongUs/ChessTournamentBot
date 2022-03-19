@@ -20,14 +20,14 @@ def read_toml(fp: TextIO) -> toml_dict:
     return data
 
 
-def write_json(fp: TextIO, to_write: dict) -> None:
+def write_json(to_write: dict, fp: TextIO) -> None:
     fp.seek(0)
     fp.truncate()
     json.dump(to_write, fp)
     fp.seek(0)
 
 
-def write_toml(fp: TextIO, to_write: toml_dict) -> None:
+def write_toml(to_write: toml_dict, fp: TextIO) -> None:
     fp.seek(0)
     fp.truncate()
     toml.dump(to_write, fp)
