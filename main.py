@@ -1,14 +1,14 @@
 import asyncio
-import discord
+import nextcord
 import openpyxl
 import toml
-from discord.ext import commands
+from nextcord.ext import commands
 
 
 class ChessTournamentBot(commands.Bot):
 
     def __init__(self):
-        super().__init__(command_prefix='', help_command=None, intents=discord.Intents.all())
+        super().__init__(command_prefix='', help_command=None, intents=nextcord.Intents.all())
 
 
 async def main():
