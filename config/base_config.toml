@@ -1,3 +1,7 @@
 TOKEN=""  # Token for the discord bot
 
 GUILD_ID=0
+
+LOADED=false
+
+START_TIME=0
