@@ -1,16 +1,7 @@
 import nextcord
-import pandas
+import os
 import toml
 from nextcord.ext import commands
-from cogs.excel_handling import ExcelCog
-
-SCHOOLS: dict[str, pandas.DataFrame] = {
-        "West Humber": ...,
-        "Saint Andrew's": ...,
-        "Earl Haig": ...,
-        "Martingrove": ...,
-        "Richview": ...
-    }
 
 
 class ChessTournamentBot(commands.Bot):
@@ -22,9 +13,15 @@ class ChessTournamentBot(commands.Bot):
         print(nextcord.__version__)
 
 
+def load_extensions(bot: ChessTournamentBot):
+    for file in os.listdir('./cogs'):
+        if file.endswith('.py'):
+            bot.load_extension(f'cogs.{file[:-3]}')
+
+
 def main():
     bot = ChessTournamentBot()
-    bot.add_cog(ExcelCog(bot, SCHOOLS))
+    load_extensions(bot)
     bot.run(toml.load("config/config.toml")["TOKEN"])
 
 
